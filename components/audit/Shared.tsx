@@ -110,8 +110,8 @@ export const TreeNode: React.FC<{
                 className={`
                     flex items-center gap-2 py-1.5 px-2 rounded-md cursor-pointer transition-colors text-sm relative group
                     ${isSelected ? 'bg-blue-50 text-blue-700 font-medium' : 'hover:bg-slate-100 text-slate-705'}
-                    [padding-left:${depth * 14 + 8}px]
                 `}
+                style={{ paddingLeft: depth * 14 + 8 }}
             >
                 <div className="w-4 h-4 flex items-center justify-center text-slate-400">
                     {hasChildren && (
@@ -147,7 +147,7 @@ export const TreeNode: React.FC<{
 
             {hasChildren && expanded && (
                 <div>
-                    {node.children!.map(child => (
+                    {(node.children ?? []).map(child => (
                         <TreeNode
                             key={child.id}
                             node={child}
@@ -242,8 +242,8 @@ export const TreeNodeWithMemos: React.FC<{
                 className={`
                     flex items-center gap-2 py-1.5 px-2 rounded-md cursor-pointer transition-colors text-xs relative
                     ${isSelected ? 'bg-blue-50 text-blue-700 font-semibold' : 'hover:bg-slate-100 text-slate-700'}
-                    [padding-left:${depth * 14 + 8}px]
                 `}
+                style={{ paddingLeft: depth * 14 + 8 }}
             >
                 <div className="w-4 h-4 flex items-center justify-center text-slate-400">
                     {hasChildren && (
@@ -279,7 +279,7 @@ export const TreeNodeWithMemos: React.FC<{
 
             {hasChildren && expanded && (
                 <div>
-                    {node.children!.map(child => (
+                    {(node.children ?? []).map(child => (
                         <TreeNodeWithMemos
                             key={child.id}
                             node={child}
@@ -298,10 +298,10 @@ export const TreeNodeWithMemos: React.FC<{
     );
 };
 
-export const InfoRow = ({ label, value }: { label: string, value?: string | number }) => (
+export const InfoRow = ({ label, value }: { label: string, value?: string | number | null }) => (
     <div className="flex items-start gap-4 py-1.5 border-b border-slate-100 last:border-b-0">
         <span className="text-xs text-slate-450 w-24 shrink-0 text-right font-medium">{label}</span>
-        <span className="text-xs font-semibold text-slate-850 break-all flex-1">{value || "/"}</span>
+        <span className="text-xs font-semibold text-slate-850 break-all flex-1">{value != null ? String(value) : "/"}</span>
     </div>
 );
 

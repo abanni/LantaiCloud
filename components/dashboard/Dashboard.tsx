@@ -134,7 +134,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 return p;
             }));
         } else {
-            setProjects([{ ...newProject, stage: '创建中', isManaged: true }, ...projects]);
+            setProjects(prev => [{ ...newProject, stage: '创建中', isManaged: true }, ...prev]);
         }
         setActiveModal('none');
         setResumingProject(null);
@@ -150,7 +150,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             projectName: newProject.name,
             organizationId: identity.organization?.id || ''
         };
-        setMessages([newMsg, ...messages]);
+        setMessages(prev => [newMsg, ...prev]);
     };
 
     const handleNewMessage = (msg: UserMessage) => {

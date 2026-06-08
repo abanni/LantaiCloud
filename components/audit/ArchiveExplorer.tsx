@@ -681,7 +681,8 @@ export const ArchiveExplorer = ({
             {/* Context menu overlay */}
             {contextMenu && (
                 <div 
-                    className={`fixed z-50 bg-white shadow-2xl rounded-xl border border-slate-200 py-1 w-44 animate-in fade-in zoom-in-95 duration-100 origin-top-left top-[${contextMenu.y}px] left-[${contextMenu.x}px]`}
+                    className="fixed z-50 bg-white shadow-2xl rounded-xl border border-slate-200 py-1 w-44 animate-in fade-in zoom-in-95 duration-100 origin-top-left"
+                    style={{ top: contextMenu.y, left: contextMenu.x }}
                     onMouseLeave={() => setContextMenu(null)}
                 >
                     <div className="px-3 py-1.5 border-b border-slate-100 text-[10px] font-extrabold text-slate-450 truncate uppercase tracking-widest bg-slate-50">

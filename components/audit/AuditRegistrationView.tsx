@@ -36,7 +36,7 @@ const TableRow = ({ label, value, colSpan = 1 }: { label: string, value: string 
                 {label}
             </div>
             <div className="flex-1 p-2.5 text-xs text-slate-805 leading-relaxed font-semibold break-all flex items-center bg-white">
-                {value || "/"}
+                {value != null ? String(value) : "/"}
             </div>
         </div>
     );
@@ -204,8 +204,8 @@ export const AuditRegistrationView = ({
                                     上传附件
                                 </h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {activeItem.submissionDocs.map((doc, idx) => (
-                                        <DocItem key={idx} doc={doc} />
+                                    {activeItem.submissionDocs.map((doc) => (
+                                        <DocItem key={doc.name} doc={doc} />
                                     ))}
                                 </div>
                             </section>
